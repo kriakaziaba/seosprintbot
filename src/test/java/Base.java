@@ -7,6 +7,7 @@ import net.lightbody.bmp.filters.RequestFilter;
 import net.lightbody.bmp.util.HttpMessageContents;
 import net.lightbody.bmp.util.HttpMessageInfo;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -45,6 +46,18 @@ public class Base {
         capabilities.setCapability(CapabilityType.PROXY, ClientUtil.createSeleniumProxy(server));
         driver = new ChromeDriver(capabilities);
         driver.get("http://www.seosprint.net/");
+        driver.manage().addCookie(new Cookie("myname", "kubai%40meta.ua"));
+        driver.manage().addCookie(new Cookie("shadow", "kubai%40meta.ua"));
+        driver.manage().addCookie(new Cookie("visitor", "8773734"));
+        driver.manage().addCookie(new Cookie("filtermail", "0"));
+        driver.manage().addCookie(new Cookie("honey", "103"));
+        driver.manage().addCookie(new Cookie("lang", "RU"));
+        driver.manage().addCookie(new Cookie("tasksort", "0"));
+        driver.manage().addCookie(new Cookie("tfuser", "3084095"));
+        driver.manage().addCookie(new Cookie("vblock1", "1"));
+        driver.manage().addCookie(new Cookie("advmanager", "self"));
+        driver.manage().addCookie(new Cookie("advmanager", "self"));
+        driver.navigate().refresh();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
@@ -52,15 +65,15 @@ public class Base {
     @Test
     public void first(){
         driver.findElement(By.id("mnu302")).click();
-        driver.findElement(By.cssSelector("form.auth input[type='text']")).sendKeys("dfgd");
-        driver.findElement(By.cssSelector("form.auth input[type='password']")).sendKeys("dfgd");
+        driver.findElement(By.cssSelector("form.auth input[type='text']")).sendKeys("kubai@meta.ua");
+        driver.findElement(By.cssSelector("form.auth input[type='password']")).sendKeys("Aej9pKvutU");
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[src]")));
-        driver.findElement(By.id("recaptcha-anchor-label")).click();
+        driver.findElement(By.cssSelector("span.recaptcha-checkbox")).click();
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
